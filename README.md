@@ -42,6 +42,25 @@ open index.html  # macOS
 start index.html  # Windows
 ```
 
+## 📧 お問い合わせフォームの設定
+
+フォームから直接 `info@hiluco.co.jp` にメールを送信するには、Formspreeの設定が必要です。
+
+### Formspree セットアップ（5分）
+
+1. https://formspree.io/ でアカウント作成（無料）
+2. 新しいフォームを作成し、`info@hiluco.co.jp` を設定
+3. フォームIDを取得（例: `xpznqwer`）
+4. `index.html` の234行目を編集:
+   ```html
+   <form class="contact-form" id="contactForm" action="https://formspree.io/f/xpznqwer" method="POST">
+   ```
+   `YOUR_FORM_ID` を実際のIDに置き換え
+
+詳しい手順は [SETUP_FORMSPREE.md](SETUP_FORMSPREE.md) を参照してください。
+
+> **Note**: Formspreeを設定しない場合は、メールクライアント（Gmail、Outlookなど）が起動する従来の方式で動作します。
+
 ## 🛠️ 技術スタック
 
 - **HTML5** - セマンティックマークアップ

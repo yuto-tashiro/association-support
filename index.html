@@ -238,7 +238,12 @@
                     </div>
                 </div>
                 <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contactForm">
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID"
+                        method="POST">
+                        <!-- Hidden field to specify recipient -->
+                        <input type="hidden" name="_to" value="info@hiluco.co.jp">
+                        <input type="hidden" name="_subject" value="協会・学会運営サポートに関するお問い合わせ">
+
                         <div class="form-group">
                             <label for="organization">協会・学会名 <span class="required">*</span></label>
                             <input type="text" id="organization" name="organization" required>

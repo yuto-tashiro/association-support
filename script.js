@@ -62,14 +62,14 @@ const navbar = document.querySelector('.navbar');
 
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
-    
+
     // Add/remove shadow based on scroll position
     if (currentScroll > 100) {
         navbar.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.3)';
     } else {
         navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.1)';
     }
-    
+
     lastScroll = currentScroll;
 });
 
@@ -77,25 +77,65 @@ window.addEventListener('scroll', () => {
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        // Get form data
-        const formData = new FormData(contactForm);
-        const data = {};
-        formData.forEach((value, key) => {
-            if (key === 'services') {
-                // Handle multiple select
-                const select = document.getElementById('services');
-                const selectedOptions = Array.from(select.selectedOptions).map(option => option.text);
-                data[key] = selectedOptions.join(', ');
-            } else {
-                data[key] = value;
+    // Check if using Formspree (has action attribute)
+    const isFormspree = contactForm.hasAttribute('action') && contactForm.getAttribute('action').includes('formspree');
+
+    if (isFormspree) {
+        // Formspree handles submission natively, just add success message
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(contactForm);
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+
+            // Show loading state
+            submitButton.textContent = '送信中...';
+            submitButton.disabled = true;
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Success
+                    alert('お問い合わせありがとうございます。\n送信が完了しました。担当者より折り返しご連絡いたします。');
+                    contactForm.reset();
+                } else {
+                    // Error
+                    alert('送信に失敗しました。\n直接 info@hiluco.co.jp までご連絡ください。');
+                }
+            } catch (error) {
+                alert('送信に失敗しました。\n直接 info@hiluco.co.jp までご連絡ください。');
+            } finally {
+                // Restore button
+                submitButton.textContent = originalText;
+                submitButton.disabled = false;
             }
         });
-        
-        // Create email body
-        const emailBody = `
+    } else {
+        // Fallback to mailto if Formspree not configured
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(contactForm);
+            const data = {};
+            formData.forEach((value, key) => {
+                if (key === 'services') {
+                    const select = document.getElementById('services');
+                    const selectedOptions = Array.from(select.selectedOptions).map(option => option.text);
+                    data[key] = selectedOptions.join(', ');
+                } else {
+                    data[key] = value;
+                }
+            });
+
+            const emailBody = `
 協会・学会名: ${data.organization}
 お名前: ${data.name}
 メールアドレス: ${data.email}
@@ -104,20 +144,13 @@ if (contactForm) {
 
 お問い合わせ内容:
 ${data.message}
-        `.trim();
-        
-        // Create mailto link
-        const mailtoLink = `mailto:info@hiluco.co.jp?subject=協会・学会運営サポートに関するお問い合わせ（${data.organization}）&body=${encodeURIComponent(emailBody)}`;
-        
-        // Open email client
-        window.location.href = mailtoLink;
-        
-        // Show confirmation message
-        alert('メールクライアントが起動します。送信を完了してください。\n\nまたは、直接 info@hiluco.co.jp までご連絡ください。');
-        
-        // Optional: Reset form
-        // contactForm.reset();
-    });
+            `.trim();
+
+            const mailtoLink = `mailto:info@hiluco.co.jp?subject=協会・学会運営サポートに関するお問い合わせ（${data.organization}）&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+            alert('メールクライアントが起動します。送信を完了してください。\n\nまたは、直接 info@hiluco.co.jp までご連絡ください。');
+        });
+    }
 }
 
 // ===== Form Validation Enhancement =====
@@ -131,7 +164,7 @@ formInputs.forEach(input => {
             input.style.borderColor = 'rgba(255, 255, 255, 0.2)';
         }
     });
-    
+
     input.addEventListener('focus', () => {
         input.style.borderColor = '#3498db';
     });
@@ -141,7 +174,7 @@ formInputs.forEach(input => {
 window.addEventListener('scroll', () => {
     const scrolled = window.pageYOffset;
     const heroBackground = document.querySelector('.hero-background');
-    
+
     if (heroBackground && scrolled < window.innerHeight) {
         heroBackground.style.transform = `translateY(${scrolled * 0.5}px)`;
     }
@@ -151,11 +184,11 @@ window.addEventListener('scroll', () => {
 const serviceCards = document.querySelectorAll('.service-card');
 
 serviceCards.forEach(card => {
-    card.addEventListener('mouseenter', function() {
+    card.addEventListener('mouseenter', function () {
         this.style.transform = 'translateY(-8px) scale(1.02)';
     });
-    
-    card.addEventListener('mouseleave', function() {
+
+    card.addEventListener('mouseleave', function () {
         this.style.transform = 'translateY(0) scale(1)';
     });
 });
@@ -187,7 +220,7 @@ const createScrollProgress = () => {
         transition: width 0.1s ease;
     `;
     document.body.appendChild(progressBar);
-    
+
     window.addEventListener('scroll', () => {
         const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (window.pageYOffset / windowHeight) * 100;
