@@ -604,6 +604,125 @@ a:hover {
     background: var(--color-dark);
 }
 
+.contact-content-simple {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-info-center {
+    text-align: center;
+}
+
+.contact-description {
+    color: var(--color-gray-light);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.8;
+}
+
+.contact-email-box {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 2px solid var(--color-accent);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin: var(--spacing-lg) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    transition: all var(--transition-normal);
+}
+
+.contact-email-box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-accent-light);
+}
+
+.email-icon {
+    font-size: 3rem;
+    color: var(--color-accent-light);
+    flex-shrink: 0;
+}
+
+.email-content {
+    text-align: left;
+    flex: 1;
+}
+
+.email-content h3 {
+    color: var(--color-white);
+    font-size: 1.2rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.email-address {
+    color: var(--color-accent-light);
+    font-weight: 700;
+    font-size: 1.8rem;
+    font-family: var(--font-secondary);
+    display: block;
+    margin-bottom: var(--spacing-xs);
+    transition: color var(--transition-fast);
+}
+
+.email-address:hover {
+    color: var(--color-accent);
+}
+
+.email-note {
+    color: var(--color-gray);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.contact-company {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-md);
+}
+
+.company-icon {
+    font-size: 2rem;
+    color: var(--color-accent-light);
+}
+
+.company-content {
+    text-align: left;
+}
+
+.company-content h4 {
+    color: var(--color-white);
+    font-size: 1rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.company-content p {
+    color: var(--color-gray-light);
+    margin-bottom: var(--spacing-xs);
+}
+
+.company-link {
+    color: var(--color-accent-light);
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.company-link:hover {
+    color: var(--color-accent);
+}
+
+.company-link i {
+    font-size: 0.8rem;
+}
+
+/* Old contact styles - keeping for backward compatibility */
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1.2fr;
@@ -815,6 +934,28 @@ a:hover {
 
     .contact-info {
         position: static;
+    }
+
+    .contact-email-box {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .email-content {
+        text-align: center;
+    }
+
+    .email-address {
+        font-size: 1.4rem;
+    }
+
+    .contact-company {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .company-content {
+        text-align: center;
     }
 
     .footer-content {

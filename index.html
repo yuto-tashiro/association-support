@@ -211,8 +211,8 @@
     <!-- Pricing/Contact Section -->
     <section id="contact" class="section contact-section">
         <div class="container">
-            <div class="contact-content">
-                <div class="contact-info">
+            <div class="contact-content-simple">
+                <div class="contact-info-center">
                     <span class="section-label">Contact</span>
                     <h2 class="section-title">お問い合わせ</h2>
                     <p class="contact-description">
@@ -220,63 +220,28 @@
                         最適なプランとお見積りをご提案いたします。<br>
                         まずはお気軽にご相談ください。
                     </p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-item-icon"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <h4>メールでのお問い合わせ</h4>
-                                <a href="mailto:info@hiluco.co.jp" class="contact-link">info@hiluco.co.jp</a>
-                            </div>
+                    <div class="contact-email-box">
+                        <div class="email-icon">
+                            <i class="fas fa-envelope"></i>
                         </div>
-                        <div class="contact-item">
-                            <div class="contact-item-icon"><i class="fas fa-building"></i></div>
-                            <div>
-                                <h4>運営会社</h4>
-                                <p>株式会社HILUCO</p>
-                            </div>
+                        <div class="email-content">
+                            <h3>メールでのお問い合わせ</h3>
+                            <a href="mailto:info@hiluco.co.jp" class="email-address">info@hiluco.co.jp</a>
+                            <p class="email-note">クリックしてメールを送信</p>
                         </div>
                     </div>
-                </div>
-                <div class="contact-form-wrapper">
-                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xyzrnwnv" method="POST">
-                        <!-- Hidden field to specify recipient -->
-                        <input type="hidden" name="_to" value="info@hiluco.co.jp">
-                        <input type="hidden" name="_subject" value="協会・学会運営サポートに関するお問い合わせ">
-
-                        <div class="form-group">
-                            <label for="organization">協会・学会名 <span class="required">*</span></label>
-                            <input type="text" id="organization" name="organization" required>
+                    <div class="contact-company">
+                        <div class="company-icon">
+                            <i class="fas fa-building"></i>
                         </div>
-                        <div class="form-group">
-                            <label for="name">お名前 <span class="required">*</span></label>
-                            <input type="text" id="name" name="name" required>
+                        <div class="company-content">
+                            <h4>運営会社</h4>
+                            <p>株式会社HILUCO</p>
+                            <a href="https://hiluco.jp/" target="_blank" rel="noopener" class="company-link">
+                                会社情報 <i class="fas fa-external-link-alt"></i>
+                            </a>
                         </div>
-                        <div class="form-group">
-                            <label for="email">メールアドレス <span class="required">*</span></label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">電話番号</label>
-                            <input type="tel" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="services">ご希望のサービス</label>
-                            <select id="services" name="services" multiple size="4">
-                                <option value="member">学会参加者の管理</option>
-                                <option value="sharing">運営者間の情報共有</option>
-                                <option value="finance">金銭管理</option>
-                                <option value="abstract">演題募集・査読管理</option>
-                                <option value="pr">広報・問い合わせ対応</option>
-                                <option value="followup">事後処理・フォローアップ</option>
-                            </select>
-                            <small>複数選択可能です（Ctrl/Cmdキーを押しながらクリック）</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">お問い合わせ内容 <span class="required">*</span></label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-large">送信する</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
